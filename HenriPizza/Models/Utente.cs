@@ -35,6 +35,6 @@ namespace HenriPizza.Models
         public string Ruolo { get; set; }
 
         public ICollection<OrdineProdotto> OrdineProdotti { get; set; }
-        public ICollection<RiepilogoOrdine> RiepilogoOrdines { get; set; }
+        public ICollection<RiepilogoOrdine> RiepilogoOrdini { get; set; }
     }
 }

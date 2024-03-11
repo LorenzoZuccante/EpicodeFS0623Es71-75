@@ -12,7 +12,7 @@ namespace HenriPizza.Models
         [Key]
         public int RiepilogoOrdineId { get; set; }
 
-        public int IdUser { get; set; }
+        public int UtenteId { get; set; }
 
         public string DataOrdine { get; set; }
 

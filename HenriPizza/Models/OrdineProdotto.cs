@@ -11,11 +11,11 @@ namespace HenriPizza.Models
         [Key]
         public int OrdineProdottoId { get; set; }
 
-        public int IdOrdine { get; set;}
+        public int RiepilogoOrdineId { get; set;}
 
-        public int IdProdotto { get; set;}
+        public int ProdottoId { get; set;}
 
-        public int IdUser { get; set;}
+        public int UtenteId { get; set;}
 
         [Required]
         [Range(1,10, ErrorMessage ="Scegli un valore  compreso tra 1 e 10")]
@@ -23,7 +23,7 @@ namespace HenriPizza.Models
 
         public decimal PrezzoOrdine { get; set;}
 
-        public RiepilogoOrdine RiepilogoOrdini { get; set;}
+        public RiepilogoOrdine RiepilogoOrdine { get; set;}
         public Utente Utente { get; set;}
         public Prodotto Prodotto { get; set;}
 
