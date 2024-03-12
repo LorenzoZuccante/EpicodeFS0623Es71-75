@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Linq;
 using HenriPizza.Models;
 
 namespace HenriPizza.Models
@@ -10,11 +9,15 @@ namespace HenriPizza.Models
         {
         }
 
-        public DbSet<Utente> Utenti { get; set; }
-        public DbSet<RiepilogoOrdine> RiepilogoOrdini { get; set; }
-        public DbSet<OrdineProdotto> OrdineProdotti { get; set; }
-        public DbSet<Prodotto> Prodotti { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+
+        public virtual DbSet<OrderSummary> OrderSummaries { get; set; }
 
 
     }
-}
+    }
+
