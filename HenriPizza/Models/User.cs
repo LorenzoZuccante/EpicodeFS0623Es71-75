@@ -32,8 +32,8 @@ namespace HenriPizza.Models
         [Required]
         public string Phone { get; set; }
 
-        public string Role { get; set; } = "user";
+        public string Role { get; set; } = "User";
 
-        public ICollection<OrderItem> OrderItems { get; set; }
+        public ICollection<OrderSummary> OrderSummaries { get; set; }
     }
 }

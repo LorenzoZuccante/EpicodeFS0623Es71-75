@@ -1,0 +1,26 @@
+﻿@model HenriPizza.Models.Product
+
+@{
+    ViewBag.Title = "Dettagli Prodotto";
+}
+
+<div class="container mt-4">
+    <h2>Dettagli Prodotto - @Html.DisplayFor(model => model.ProductName)</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img class="card-img-top" src="@Url.Content(Model.ProductImage)" alt="Immagine del Prodotto">
+                <div class="card-body">
+                    <h4 class="card-title">@Html.DisplayFor(model => model.ProductName)</h4>
+                    <p class="card-text"><strong>Prezzo:</strong> @Html.DisplayFor(model => model.ProductPrice) €</p>
+                    <p class="card-text"><strong>Tempo di preparazione:</strong> @Html.DisplayFor(model => model.PreparationTime) minuti</p>
+                    <p class="card-text"><strong>Ingredienti:</strong> @Html.DisplayFor(model => model.Ingredients)</p>
+                    <p class="card-text"><strong>Categoria:</strong> @Html.DisplayFor(model => model.Category)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        @Html.ActionLink("Aggiugni al Carrello", "#", null, new { @class = "btn btn-success" })
+    </div>
+</div>

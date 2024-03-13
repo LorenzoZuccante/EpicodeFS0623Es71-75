@@ -26,21 +26,19 @@ namespace HenriPizza.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string Email, string Password)
         {
-            using (var db = new DBContext())
+            using (DBContext db = new DBContext())
             {
-                var user = db.Users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
+                var user = db.Users.Where(u => u.Email == Email && u.Password == Password).FirstOrDefault();
 
-                if (user != null)
-                {
-                    FormsAuthentication.SetAuthCookie(Email, false); 
-
-                    return RedirectToAction("Index");
-                }
-                else
+                if (user == null)
                 {
                     ViewBag.Error = "Invalid email or password";
-                    return View();
+                    return RedirectToAction("Login");
                 }
+                    FormsAuthentication.SetAuthCookie(user.UserId.ToString(), false); 
+
+                    return RedirectToAction("Index");
+                
             }
         }
         

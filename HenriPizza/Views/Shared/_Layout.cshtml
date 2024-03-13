@@ -20,20 +20,23 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("Admin Dashboard", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
 
-                    @if (User.Identity.IsAuthenticated)
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
+                        if (HttpContext.Current.User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Gestione Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
+
+                        }
+                        <li>@Html.ActionLink("Prodotti", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
                         <li><a href="@Url.Action("Logout", "Home")" class="btn btn-danger">Logout</a></li>
 
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Accedi o Registrati", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li> @Html.ActionLink("Accedi o Registrati", "Login", "Home", new { area = "" }, new { @class = "nav-link" }) </li>
                     }
+
                 </ul>
             </div>
         </div>

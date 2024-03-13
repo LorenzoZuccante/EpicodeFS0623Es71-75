@@ -1,0 +1,29 @@
+﻿@model IEnumerable<HenriPizza.Models.Product>
+
+@{
+    ViewBag.Title = "Vetrina";
+}
+
+<h2>Vetrina</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mt-3" style="width: 18rem;">
+                    <img class="card-img-top" src="@Url.Content(item.ProductImage)" alt="Product Image" style="width:100%; height:auto;">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProductName)</h5>
+                        <p class="card-text">Prezzo: @Html.DisplayFor(modelItem => item.ProductPrice)€</p>
+                        <p class="card-text">Categoria: @Html.DisplayFor(modelItem => item.Category)</p>
+                        <div class="text-end">
+                            @Html.ActionLink("Aggiungi al Carrello", "#", "#", new { id = item.ProductId }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Dettagli", "VetrinaDetails", "Products", new { id = item.ProductId }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

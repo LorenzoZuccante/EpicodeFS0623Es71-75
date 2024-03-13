@@ -13,6 +13,8 @@ namespace HenriPizza.Models
         [Key]
         public int OrderSummaryId { get; set; }
 
+        public int UserId { get; set; }
+
         public string OrderDate { get; set; }
 
         public string OrderAddress { get; set; }
@@ -24,5 +26,7 @@ namespace HenriPizza.Models
         public string State { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; }
+
+        public User User { get; set; }
     }
 }

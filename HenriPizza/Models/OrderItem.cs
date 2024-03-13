@@ -8,7 +8,7 @@ using System.Web;
 
 namespace HenriPizza.Models
 {
-    
+
     public class OrderItem
     {
         [Key]
@@ -18,8 +18,6 @@ namespace HenriPizza.Models
 
         public int ProductId { get; set; }
 
-        public int UserId { get; set; }
-
         [Required]
         [Range(1, 10, ErrorMessage = "Min. 1, Max. 10")]
         public int Quantity { get; set; }
@@ -27,7 +25,6 @@ namespace HenriPizza.Models
         public decimal ItemPrice { get; set; }
 
         public OrderSummary OrderSummary { get; set; }
-        public User User { get; set; }
         public Product Product { get; set; }
     }
 }
