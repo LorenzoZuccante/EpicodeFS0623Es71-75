@@ -12,8 +12,10 @@ namespace HenriPizza.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
+            LinkCarrello();
             return View();
         }
+
 
         [HttpGet]
         
@@ -41,7 +43,7 @@ namespace HenriPizza.Controllers
                 
             }
         }
-        
+        [Authorize, HttpPost]
         public ActionResult Logout()
         {
             if (User.Identity.IsAuthenticated)
@@ -50,6 +52,34 @@ namespace HenriPizza.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+        
+        public void LinkCarrello()
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                int userId = Convert.ToInt32(HttpContext.User.Identity.Name);
+                using(DBContext db = new DBContext()) 
+                {
+                    OrderSummary Carrello = db.OrderSummaries.Where(c => c.UserId == userId && c.State == "Non Evaso").FirstOrDefault();
+                    if (Carrello == null)
+                    {
+                        OrderSummary newOrder = new OrderSummary
+                        {
+                            UserId = userId,
+                            State = "Non Evaso"
+                        };
+                        db.OrderSummaries.Add(newOrder);
+                        db.SaveChanges();
+
+                        ViewBag.OrderSummaryId = newOrder.OrderSummaryId;
+                    }
+                    else
+                    {
+                        ViewBag.OrderSummaryId = Carrello.OrderSummaryId;
+                    }
+                }
+            }
         }
     }
 }

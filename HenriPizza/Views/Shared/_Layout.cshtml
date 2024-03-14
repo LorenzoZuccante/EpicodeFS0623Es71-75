@@ -29,7 +29,13 @@
 
                         }
                         <li>@Html.ActionLink("Prodotti", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li><a href="@Url.Action("Logout", "Home")" class="btn btn-danger">Logout</a></li>
+                        <li>@Html.ActionLink("Carrello", "Details", "OrderSummaries", new { id = ViewBag.OrderSummaryId }, new { @class = "nav-link" })</li>
+
+                        using (Html.BeginForm("Logout", "Home"))
+
+                        {
+                            <button class="btn btn-danger">Logout</button>
+                        }
 
                     }
                     else

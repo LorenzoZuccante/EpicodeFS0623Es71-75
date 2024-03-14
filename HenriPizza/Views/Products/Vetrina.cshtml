@@ -18,7 +18,7 @@
                         <p class="card-text">Prezzo: @Html.DisplayFor(modelItem => item.ProductPrice)€</p>
                         <p class="card-text">Categoria: @Html.DisplayFor(modelItem => item.Category)</p>
                         <div class="text-end">
-                            @Html.ActionLink("Aggiungi al Carrello", "#", "#", new { id = item.ProductId }, new { @class = "btn btn-success" })
+                           
                             @Html.ActionLink("Dettagli", "VetrinaDetails", "Products", new { id = item.ProductId }, new { @class = "btn btn-primary" })
                         </div>
                     </div>

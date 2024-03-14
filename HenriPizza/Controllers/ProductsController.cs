@@ -18,6 +18,7 @@ namespace HenriPizza.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            LinkCarrello();
             
             if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
@@ -33,6 +34,7 @@ namespace HenriPizza.Controllers
         [Authorize]
         public ActionResult Details(int? id)
         {
+            LinkCarrello();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,6 +51,7 @@ namespace HenriPizza.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
+            LinkCarrello();
             return View();
         }
 
@@ -73,6 +76,7 @@ namespace HenriPizza.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Edit(int? id)
         {
+            LinkCarrello();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -104,6 +108,7 @@ namespace HenriPizza.Controllers
         [Authorize]
         public ActionResult VetrinaDetails(int? id)
         {
+            LinkCarrello();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -120,6 +125,7 @@ namespace HenriPizza.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
+            LinkCarrello();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -151,6 +157,33 @@ namespace HenriPizza.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public void LinkCarrello()
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                int userId = Convert.ToInt32(HttpContext.User.Identity.Name);
+                using (DBContext db = new DBContext())
+                {
+                    OrderSummary Carrello = db.OrderSummaries.Where(c => c.UserId == userId && c.State == "Non Evaso").FirstOrDefault();
+                    if (Carrello == null)
+                    {
+                        OrderSummary newOrder = new OrderSummary
+                        {
+                            UserId = userId,
+                            State = "Non Evaso"
+                        };
+                        db.OrderSummaries.Add(newOrder);
+                        db.SaveChanges();
+
+                        ViewBag.OrderSummaryId = newOrder.OrderSummaryId;
+                    }
+                    else
+                    {
+                        ViewBag.OrderSummaryId = Carrello.OrderSummaryId;
+                    }
+                }
+            }
         }
     }
 }

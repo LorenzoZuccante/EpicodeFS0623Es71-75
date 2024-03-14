@@ -164,6 +164,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderItemsController.cs" />
+    <Compile Include="Controllers\OrderSummariesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -256,6 +258,16 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Products\Vetrina.cshtml" />
     <Content Include="Views\Products\VetrinaDetails.cshtml" />
+    <Content Include="Views\OrderItems\Create.cshtml" />
+    <Content Include="Views\OrderItems\Delete.cshtml" />
+    <Content Include="Views\OrderItems\Details.cshtml" />
+    <Content Include="Views\OrderItems\Edit.cshtml" />
+    <Content Include="Views\OrderItems\Index.cshtml" />
+    <Content Include="Views\OrderSummaries\Create.cshtml" />
+    <Content Include="Views\OrderSummaries\Delete.cshtml" />
+    <Content Include="Views\OrderSummaries\Details.cshtml" />
+    <Content Include="Views\OrderSummaries\Edit.cshtml" />
+    <Content Include="Views\OrderSummaries\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

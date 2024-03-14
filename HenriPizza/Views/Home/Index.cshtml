@@ -7,6 +7,12 @@
     <h1>Bentornati a Henri Pizza!</h1>
     <p>Assaporate la vera pizza italiana fatta con passione e ingredienti di alta qualità.</p>
 </header>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+       Ordine effettuato con successo!
+    </div>
+}
 
 <div class="container mt-5">
     <div class="row">
