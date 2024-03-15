@@ -268,6 +268,7 @@
     <Content Include="Views\OrderSummaries\Details.cshtml" />
     <Content Include="Views\OrderSummaries\Edit.cshtml" />
     <Content Include="Views\OrderSummaries\Index.cshtml" />
+    <Content Include="Views\OrderSummaries\Statistiche.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,10 +26,11 @@
                         if (HttpContext.Current.User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Gestione Utenti", "Index", "Users", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Statistiche Ordini", "Statistiche", "OrderSummaries", new { area = "" }, new { @class = "nav-link" })</li>
 
                         }
                         <li>@Html.ActionLink("Prodotti", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Carrello", "Details", "OrderSummaries", new { id = ViewBag.OrderSummaryId }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Carrello", "Details", "OrderSummaries", new { area = "" }, new { @class = "nav-link" })</li>
 
                         using (Html.BeginForm("Logout", "Home"))
 

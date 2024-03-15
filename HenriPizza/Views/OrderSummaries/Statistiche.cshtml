@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Statistiche Ordini";
+}
+
+<h2>Statistiche Ordini</h2>
+
+<div class="container">
+    <!-- Incassi per giorno -->
+    <div class="row mb-3">
+        <div class="col">
+            <h4>Incassi per giorno:</h4>
+            <select id="giorniSelect" class="form-control">
+                @for (int i = 1; i <= 31; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <button id="fetchIncassi" class="btn btn-primary mt-2">Mostra Incassi</button>
+            <div id="incassiRisultato" class="mt-2"></div>
+        </div>
+    </div>
+
+    <!-- Ordini Evasi -->
+    <div class="row">
+        <div class="col">
+            <h4>Ordini Evasi:</h4>
+            <button id="fetchOrdiniEvasi" class="btn btn-primary">Mostra Ordini Evasi</button>
+            <div id="ordiniEvasiRisultato" class="mt-2"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(document).ready(function () {
+            $("#fetchIncassi").click(function () {
+                var giornoSelezionato = $('#giorniSelect').val();
+                $.ajax({
+                    url: '@Url.Action("IncassiPerGiorno", "OrderSummaries")/' + giornoSelezionato,
+                    type: 'GET',
+                    success: function (result) {
+                        $("#incassiRisultato").html("Incasso giornaliero: €" + result);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#incassiRisultato").html("Errore nel recupero degli incassi.");
+                    }
+                });
+            });
+
+            $("#fetchOrdiniEvasi").click(function () {
+                $.ajax({
+                    url: '@Url.Action("OrdiniEvasi", "OrderSummaries")',
+                    type: 'GET',
+                    success: function (result) {
+                        $("#ordiniEvasiRisultato").html("Numero ordini evasi: " + result);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#ordiniEvasiRisultato").html("Errore nel recupero degli ordini evasi.");
+                    }
+                });
+            });
+        });
+    </script>
+}

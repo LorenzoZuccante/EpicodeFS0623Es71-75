@@ -72,12 +72,8 @@ namespace HenriPizza.Controllers
                         db.OrderSummaries.Add(newOrder);
                         db.SaveChanges();
 
-                        ViewBag.OrderSummaryId = newOrder.OrderSummaryId;
                     }
-                    else
-                    {
-                        ViewBag.OrderSummaryId = Carrello.OrderSummaryId;
-                    }
+                   
                 }
             }
         }
